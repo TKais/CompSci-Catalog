@@ -15,6 +15,7 @@ A catalog of computer science tutorials and resources categorized by principal a
 * Inside the `vagrant` directory, run the command `vagrant up` to bring the virtual machine online.
 * Next, you'll need to log into the virtual machine. Do this by running the command `vagrant ssh`. Once logged in, you'll be in the home directory in the virtual machine -- run `cd ../../vagrant` to get into the correct directory.
 * Make sure you're in the `vagrant` folder. You can find out if you're in the right place by running the command `pwd` and making sure you're in `vagrant/`. Running the command `ls` should show a `catalog` folder, a `README.md` file, and `Vagrantfile`).
+* Run the command `bash config.sh` to install all necessary dependencies.
 * Run the command `python3 dummy_data.py` to populate the database with example data.
 * Run the command `python3 main.py` to start the flask server.
 * Navigate to http://localhost:5000 in your browser to see the application.
