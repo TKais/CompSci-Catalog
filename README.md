@@ -1,6 +1,6 @@
 # CompSci Catalog
 
-A log analyzer that queries a database containing newspaper articles. The log has a database row for each time a reader loaded a web page. Using that information, this analyzer answers the following questions about user activity:
+A catalog of computer science tutorials and resources categorized by principal areas of study within computer science, including artificial intelligence, human computer interaction, database systems, programming languages, computer systems and networks, software engineering, vision and graphics, numerical analysis, theory of computing, and bioinformatics. 
 
 ## Before running the CompSci Catalog
 
@@ -13,8 +13,11 @@ A log analyzer that queries a database containing newspaper articles. The log ha
 * Clone CompSci Catalog repo.
 * Once cloned, change into the directory for the CompSci Catalog project and run the command `cd vagrant`.
 * Inside the `vagrant` directory, run the command `vagrant up` to bring the virtual machine online.
-* Next, you'll need to log into the virtual machine. Do this by running the command `vagrant ssh`. Once logged in, you'll be in the home directory -- run `cd ../../vagrant` to get into the correct directory.
-* In the `catalog` directory, run the command `python3 main.py`.
+* Next, you'll need to log into the virtual machine. Do this by running the command `vagrant ssh`. Once logged in, you'll be in the home directory in the virtual machine -- run `cd ../../vagrant` to get into the correct directory.
+* Make sure you're in the `vagrant` folder. You can find out if you're in the right place by running the command `pwd` and making sure you're in `vagrant/`. Running the command `ls` should show a `catalog` folder, a `README.md` file, and `Vagrantfile`).
+* Run the command `python3 dummy_data.py` to populate the database with example data.
+* Run the command `python3 main.py` to start the flask server.
+* Navigate to http://localhost:5000 in your browser to see the application.
 
 ## Technical Details
 This project utilizes the following technologies:
