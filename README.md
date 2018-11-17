@@ -25,5 +25,5 @@ This project utilizes the following technologies:
 * Python 3
 * Flask
 * SQLite
-* OAuth
+* OAuth 2.0
 * SQLAlchemy
