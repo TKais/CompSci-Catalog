@@ -11,7 +11,7 @@ def show_topics():
   return render_template('index.html')
 
 
-@app.route('/topics/category/<category_name>/new', methods=['GET', 'POST'])
+@app.route('/topics/category/<category_name>/new/', methods=['GET', 'POST'])
 def create_article(category_name):
   print("new article")
 
