@@ -7,8 +7,13 @@ app = Flask(__name__)
 
 @app.route('/')
 @app.route('/topics')
-def show_categories():
+def show_topics():
   return render_template('index.html')
+
+
+@app.route('/topics/category/<category_name>/new', methods=['GET', 'POST'])
+def create_article(category_name):
+  print("new article")
 
 
 if __name__ == '__main__':
