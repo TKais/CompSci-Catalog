@@ -1,6 +1,6 @@
 # CompSci Catalog
 
-A catalog of computer science tutorials and resources categorized by principal areas of study within computer science, including artificial intelligence, human computer interaction, database systems, programming languages, computer systems and networks, software engineering, vision and graphics, numerical analysis, theory of computing, and bioinformatics. 
+A catalog of computer science tutorials, resources, and general information categorized by principal areas of study within computer science, including artificial intelligence, human computer interaction, database systems, programming languages, computer systems and networks, software engineering, vision and graphics, numerical analysis, theory of computing, and bioinformatics. 
 
 ## Before running the CompSci Catalog
 
