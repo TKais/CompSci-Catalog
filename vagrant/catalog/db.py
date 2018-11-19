@@ -15,8 +15,8 @@ class Topic(Base):
   @property
   def serialize(self):
     return {
-      id: self.id,
-      name: self.name
+      'id': self.id,
+      'name': self.name
     }
 
 
@@ -32,6 +32,11 @@ class Article(Base):
   @property
   def serialize(self):
     return {
-      id: self.id,
-      name: self.name
+      'id': self.id,
+      'name': self.name,
+      'content': self.content,
     }
+
+
+engine = create_engine('sqlite:///restaurantmenu.db')
+Base.metadata.create_all(engine)
