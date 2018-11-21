@@ -11,8 +11,8 @@ def show_topics():
   return render_template('index.html')
 
 
-@app.route('/topics/category/<category_name>/new/', methods=['GET', 'POST'])
-def create_article(category_name):
+@app.route('/topics/<topic_name>/category/<category_name>/new/', methods=['GET', 'POST'])
+def create_article(topic_name, category_name):
   print("new article")
 
 
@@ -22,14 +22,19 @@ if __name__ == '__main__':
 
 # GET /
 # GET /topics
-# GET /topics/category/AI
-# GET /topics/category/AI/4
+# GET /topics/AI/
+# GET /topics/AI/category/new
+# GET /topics/AI/category/Python/
+# GET /topics/AI/category/Python/new
+# GET /topics/AI/category/Python/4
+# GET /topics/AI/category/Python/4/edit
+
 
 # topics
-  # AI
-    # article
-    # article
-  # Software Engineering
+    # AI
+        # article
+        # article
+    # Software Engineering
 
 
   
