@@ -10,10 +10,14 @@ app = Flask(__name__)
 def show_topics():
   return render_template('index.html')
 
+@app.route('/topics/<topic_name>/')
+def show_topic(topic_name):
+  print('A particular topic page')
+
 
 @app.route('/topics/<topic_name>/category/<category_name>/new/', methods=['GET', 'POST'])
 def create_article(topic_name, category_name):
-  print("new article")
+  print('new article')
 
 
 if __name__ == '__main__':
