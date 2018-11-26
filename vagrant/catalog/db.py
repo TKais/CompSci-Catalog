@@ -54,5 +54,5 @@ class Article(Base):
     }
 
 
-engine = create_engine('sqlite:///cstopics.db')
+engine = create_engine('sqlite:///compscicatalog.db')
 Base.metadata.create_all(engine)
