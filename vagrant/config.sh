@@ -9,5 +9,6 @@ pip3 install Flask-Login==0.1.3 --user
 pip3 install oauth2client --user
 pip3 install requests --user
 pip3 install httplib2 --user
+pip3 install sqlalchemy --user
 python3 catalog/db.py
 python3 catalog/dummy_data.py
