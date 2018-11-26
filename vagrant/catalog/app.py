@@ -1,14 +1,25 @@
 #!/usr/bin/python3
 
 from flask import Flask, render_template
+from sqlalchemy import create_engine, asc
+from sqlalchemy.orm import sessionmaker
+from db import Base, Topic
 
 app = Flask(__name__)
+
+engine = create_engine('sqlite:///cstopics.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 
 @app.route('/')
 @app.route('/topics')
 def show_topics():
-  return render_template('index.html')
+  topics = session.query(Topic)
+  print(topics)
+  return render_template('topics.html', topics=topics)
 
 @app.route('/topics/<topic_name>/')
 def show_topic(topic_name):
