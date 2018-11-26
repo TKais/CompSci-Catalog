@@ -11,4 +11,4 @@ pip3 install requests --user
 pip3 install httplib2 --user
 pip3 install sqlalchemy --user
 python3 db.py
-python3 dummy_data.py
+python3 db_data.py
