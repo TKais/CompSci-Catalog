@@ -13,4 +13,8 @@ AI = Topic(name='Artificial Intelligence')
 session.add(AI)
 session.commit()
 
+human_computer_interaction = Topic(name='Human Computer Interaction')
+session.add(human_computer_interaction)
+session.commit()
+
 print('Dummy data populated')
