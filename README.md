@@ -1,6 +1,6 @@
 # CompSci Catalog
 
-A catalog of computer science tutorials, resources, and general information categorized by principal areas of study within computer science, including artificial intelligence, human computer interaction, database systems, programming languages, computer systems and networks, software engineering, vision and graphics, numerical analysis, theory of computing, and bioinformatics. 
+A catalog of computer science tutorials, resources, and general information categorized by principal areas of study within computer science, including artificial intelligence, human computer interaction, database systems, programming languages, computer systems and networks, software engineering, vision and graphics, numerical analysis, theory of computing, and bioinformatics.
 
 ## Before running the CompSci Catalog
 
@@ -16,7 +16,7 @@ A catalog of computer science tutorials, resources, and general information cate
 * Next, you'll need to log into the virtual machine. Do this by running the command `vagrant ssh`. Once logged in, you'll be in the home directory in the virtual machine -- run `cd ../../vagrant` to get into the correct directory.
 * Run the command `cd catalog` to change into the catalog directory.
 * Make sure you're in the `catalog` folder. You can find out if you're in the right place by running the command `pwd` and making sure you're in `vagrant/catalog/`. Running the command `ls` should show a `templates` folder, and a few files such as `app.py`, `config.sh`, `db.py`, and `db_data.py`.
-* Run the command `bash config.sh` to install all necessary dependencies and set up the database with data.
+* Run the command `bash config.sh` to install all necessary dependencies and to populate the database with data.
 * Run the command `python3 app.py` to start the flask server.
 * Navigate to http://localhost:5000 in your browser to see the application.
 
