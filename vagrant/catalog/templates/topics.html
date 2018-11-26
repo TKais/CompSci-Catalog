@@ -1,0 +1,6 @@
+{% extends "main.html" %}
+{% block content %}
+  {% for topic in topics %}
+    <h3>Topic Name: {{topic.name}}</h3>
+  {% endfor %}
+{% endblock %}
