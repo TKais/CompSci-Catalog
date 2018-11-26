@@ -7,12 +7,5 @@
 </head>
 <body>
   <h1>CompSci Catalog</h1>
-  <ul>
-  {% for topic in topics %}
-    <li>
-      <a href = "{{url_for('show_topic', topic_id = topic.id)}}">{topic.name}</a>
-    </li>
-  {% endfor %}
-  </ul>
 </body>
 </html>
