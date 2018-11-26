@@ -25,7 +25,7 @@ class Category(Base):
 
   id = Column(Integer, primary_key = True)
   name = Column(String(250), nullable = False)
-  topic_id = Column(Integer, ForeignKey(topic.id))
+  topic_id = Column(Integer, ForeignKey('topic.id'))
   topic = relationship(Topic)
 
   @property
@@ -42,7 +42,7 @@ class Article(Base):
   id = Column(Integer, primary_key = True)
   name = Column(String(250), nullable = False)
   content = Column(String(250), nullable = False)
-  category_id = Column(Integer, ForeignKey(category.id))
+  category_id = Column(Integer, ForeignKey('category.id'))
   category = relationship(Category)
 
   @property
@@ -54,5 +54,5 @@ class Article(Base):
     }
 
 
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine('sqlite:///cstopics.db')
 Base.metadata.create_all(engine)
