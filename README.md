@@ -14,9 +14,9 @@ A catalog of computer science tutorials, resources, and general information cate
 * Once cloned, change into the directory for the CompSci Catalog project and run the command `cd vagrant`.
 * Inside the `vagrant` directory, run the command `vagrant up` to bring the virtual machine online.
 * Next, you'll need to log into the virtual machine. Do this by running the command `vagrant ssh`. Once logged in, you'll be in the home directory in the virtual machine -- run `cd ../../vagrant` to get into the correct directory.
-* Make sure you're in the `vagrant` folder. You can find out if you're in the right place by running the command `pwd` and making sure you're in `vagrant/`. Running the command `ls` should show a `catalog` folder, a `README.md` file, and `Vagrantfile`).
-* Run the command `bash config.sh` to install all necessary dependencies and set up the database with dummy data.
 * Run the command `cd catalog` to change into the catalog directory.
+* Make sure you're in the `catalog` folder. You can find out if you're in the right place by running the command `pwd` and making sure you're in `vagrant/catalog/`. Running the command `ls` should show a `templates` folder, and a few files such as `app.py`, `config.sh`, `db.py`, and `dummy_data.py`.
+* Run the command `bash config.sh` to install all necessary dependencies and set up the database with dummy data.
 * Run the command `python3 app.py` to start the flask server.
 * Navigate to http://localhost:5000 in your browser to see the application.
 
