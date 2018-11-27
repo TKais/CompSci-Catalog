@@ -9,6 +9,7 @@ module.exports = {
     path: __dirname + '/js',
     filename: 'bundle.js'
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -16,7 +17,7 @@ module.exports = {
         loaders: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
+          presets: ['@babel/preset-env', '@babel/preset-react']
         },
       }
     ]
