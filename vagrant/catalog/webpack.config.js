@@ -6,7 +6,7 @@ module.exports = {
     './js/app.js'
   ],
   output: {
-    path: __dirname + '/js',
+    path: __dirname + '/static',
     filename: 'bundle.js'
   },
   mode: 'production',
