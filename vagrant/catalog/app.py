@@ -7,7 +7,7 @@ from db import Base, Topic
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///compscicatalog.db')
+engine = create_engine('sqlite:///compscicatalog.db?check_same_thread=False')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
