@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from db import Base, Topic
@@ -19,7 +19,12 @@ session = DBSession()
 def show_topics():
   topics = session.query(Topic)
   print(topics)
-  return render_template('topics.html', topics=topics)
+  return render_template('main.html', topics=topics)
+
+@app.route('/topics/JSON')
+def return_topics_JSON():
+  topics = session.query(Topic)
+  return jsonify(topics=[topic.serialize for topic in topics])
 
 @app.route('/topics/<topic_name>/')
 def show_topic(topic_name):
