@@ -19,7 +19,7 @@ session = DBSession()
 def show_topics():
   topics = session.query(Topic)
   print(topics)
-  return render_template('main.html', topics=topics)
+  return render_template('topics.html', topics=topics)
 
 @app.route('/topics/JSON')
 def return_topics_JSON():
@@ -28,7 +28,8 @@ def return_topics_JSON():
 
 @app.route('/topics/<topic_name>/')
 def show_topic(topic_name):
-  print('A particular topic page')
+  print('A particular topic page', topic_name)
+  topic = session.query(Topic).filter_by(name=topic_name).one()
 
 
 @app.route('/topics/<topic_name>/categories/')

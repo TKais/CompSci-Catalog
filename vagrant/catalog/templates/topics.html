@@ -1,0 +1,10 @@
+{% extends "main.html" %}
+{% block content %}
+  <ul>
+    {% for topic in topics %}
+      <li>
+        <a href="{{url_for('show_topic', topic_name = topic.name)}}">{{topic.name}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
