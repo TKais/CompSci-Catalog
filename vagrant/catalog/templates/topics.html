@@ -3,7 +3,7 @@
   <ul>
     {% for topic in topics %}
       <li>
-        <a href="{{url_for('show_topic', topic_name = topic.name)}}">{{topic.name}}</a>
+        <a href="{{url_for('show_topic', topic_url = topic.url)}}">{{topic.name}}</a>
       </li>
     {% endfor %}
   </ul>
