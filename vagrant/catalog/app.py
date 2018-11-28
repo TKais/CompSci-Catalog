@@ -26,10 +26,11 @@ def return_topics_JSON():
   topics = session.query(Topic)
   return jsonify(topics=[topic.serialize for topic in topics])
 
-@app.route('/topics/<topic_name>/')
-def show_topic(topic_name):
-  print('A particular topic page', topic_name)
-  topic = session.query(Topic).filter_by(name=topic_name).one()
+@app.route('/topics/<topic_url>/')
+def show_topic(topic_url):
+  print('A particular topic page', topic_url)
+  topic = session.query(Topic).filter_by(url=topic_url).one()
+  return render_template('topic.html', topic=topic)
 
 
 @app.route('/topics/<topic_name>/categories/')
