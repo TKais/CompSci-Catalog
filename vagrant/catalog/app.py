@@ -15,13 +15,13 @@ session = DBSession()
 
 
 @app.route('/')
-@app.route('/topics')
+@app.route('/topics/')
 def show_topics():
   topics = session.query(Topic)
   print(topics)
   return render_template('topics.html', topics=topics)
 
-@app.route('/topics/JSON')
+@app.route('/topics/JSON/')
 def return_topics_JSON():
   topics = session.query(Topic)
   return jsonify(topics=[topic.serialize for topic in topics])
