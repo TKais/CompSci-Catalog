@@ -3,7 +3,7 @@
 from flask import Flask, render_template, jsonify
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
-from db import Base, Topic
+from db import Base, Topic, Category
 
 app = Flask(__name__)
 
@@ -29,7 +29,8 @@ def return_topics_JSON():
 @app.route('/topics/<topic_url>/')
 def show_topic(topic_url):
   print('A particular topic page', topic_url)
-  topic = session.query(Topic).filter_by(url=topic_url).one()
+  topic = session.query(Topic).filter_by(url = topic_url).one()
+  categories = session.query(Category).filter_by(topic_id = topic.id).all()
   return render_template('topic.html', topic=topic)
 
 
