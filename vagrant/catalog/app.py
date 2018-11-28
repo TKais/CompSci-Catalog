@@ -33,11 +33,6 @@ def show_topic(topic_url):
   return render_template('topic.html', topic=topic)
 
 
-@app.route('/topics/<topic_name>/categories/')
-def show_categories(topic_name):
-  print('A set of categories within a particular topic')
-
-
 @app.route('/topics/<topic_name>/categories/new/')
 def create_category(topic_name):
   print('new category')
