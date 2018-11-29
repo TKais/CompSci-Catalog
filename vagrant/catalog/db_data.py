@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from db import Base, Topic
+from db import Base, Topic, Category, Article
 
 engine = create_engine('sqlite:///compscicatalog.db?check_same_thread=False')
 Base.metadata.bind = engine
