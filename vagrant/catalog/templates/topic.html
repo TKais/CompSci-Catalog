@@ -5,7 +5,7 @@
 <ul>
   {% for category in categories %}
   <li>
-    <a>{{category.name}}</a>
+    <a href="{{url_for('show_category', topic_name = topic.name, category_url = category.url)}}">{{category.name}}</a>
   </li>
   {% endfor %}
 </ul>
