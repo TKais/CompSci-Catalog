@@ -31,7 +31,7 @@ def show_topic(topic_url):
   print('A particular topic page', topic_url)
   topic = session.query(Topic).filter_by(url = topic_url).one()
   categories = session.query(Category).filter_by(topic_id = topic.id).all()
-  return render_template('topic.html', topic=topic)
+  return render_template('topic.html', topic=topic, categories=categories)
 
 
 @app.route('/topics/<topic_name>/categories/new/')
