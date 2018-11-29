@@ -2,5 +2,12 @@
 {% block content %}
 
 <h3>{{topic.name}}'s Page</h3>
+<ul>
+  {% for category in categories %}
+  <li>
+    <a>{{category.name}}</a>
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
