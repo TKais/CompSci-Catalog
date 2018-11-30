@@ -1,5 +1,11 @@
 {% extends "main.html" %}
 {% block content %}
 <h1>{{category.name}}'s Page</h1>
-
+<ul>
+  {% for article in articles %}
+    <li>
+      <a href="{{url_for('show_article', category_url=category.url, article_id=article.id, topic_url=topic_url)}}">{{article.name}}</a>
+    </li>
+  {% endfor %}
+</ul>
 {% endblock %}
