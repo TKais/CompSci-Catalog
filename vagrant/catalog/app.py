@@ -39,9 +39,11 @@ def create_category(topic_name):
   print('new category')
 
 
-@app.route('/topics/<topic_name>/categories/<category_name>/')
-def show_category(topic_name, category_name):
+@app.route('/topics/<topic_url>/categories/<category_url>/')
+def show_category(topic_url, category_url):
   print('A particular category page')
+  category = session.query(Category).filter_by(url=category_url).one()
+  return render_template('category.html', category=category)
 
 
 @app.route('/topics/<topic_name>/categories/<category_name>/new/', methods=['GET', 'POST'])
