@@ -17,6 +17,10 @@ supervised_learning = Category(name='Supervised Learning', url='Supervised-Learn
 session.add(supervised_learning)
 session.commit()
 
+neural_networks = Article(name='Neural Networks', category_id=1, content='Artificial neural networks (ANN) or connectionist systems are computing systems vaguely inspired by the biological neural networks that constitute animal brains.[1] The neural network itself is not an algorithm, but rather a framework for many different machine learning algorithms to work together and process complex data inputs.[2] Such systems "learn" to perform tasks by considering examples, generally without being programmed with any task-specific rules. For example, in image recognition, they might learn to identify images that contain cats by analyzing example images that have been manually labeled as "cat" or "no cat" and using the results to identify cats in other images. They do this without any prior knowledge about cats, for example, that they have fur, tails, whiskers and cat-like faces. Instead, they automatically generate identifying characteristics from the learning material that they process.')
+session.add(neural_networks)
+session.commit()
+
 unsupervised_learning = Category(name='Unsupervised Learning', url='Unupervised-Learning', topic_id=1)
 session.add(unsupervised_learning)
 session.commit()
