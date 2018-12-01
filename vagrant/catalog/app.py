@@ -32,9 +32,11 @@ def show_topic(topic_url):
   return render_template('topic.html', topic=topic, categories=categories)
 
 
-@app.route('/topics/<topic_name>/categories/new/')
-def create_category(topic_name):
+@app.route('/topics/<topic_url>/categories/new/')
+def create_category(topic_url):
   print('new category')
+  topic = session.query(Topic).filter_by(url = topic_url).one()
+  return render_template('new_category.html', topic=topic)
 
 
 @app.route('/topics/<topic_url>/categories/<category_url>/')
