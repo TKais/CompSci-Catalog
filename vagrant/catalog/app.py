@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from flask import Flask, render_template, jsonify, request, redirect, url_for, flash
+from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, make_response
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from db import Base, Topic, Category, Article
@@ -15,7 +15,7 @@ session = DBSession()
 
 def url_maker(url):
   return url.replace(' ', '-').lower()
-  
+
 
 @app.route('/')
 @app.route('/topics/')
@@ -38,14 +38,14 @@ def show_topic(topic_url):
 @app.route('/topics/<topic_url>/categories/new/', methods=['GET', 'POST'])
 def create_category(topic_url):
   print('new category')
+  topic = session.query(Topic).filter_by(url = topic_url).one()
   if request.method == 'POST':
-    new_url = url_maker(form.request['cname'])
-    new_category = Category(name=form.request['cname'], url=new_url)
+    new_url = url_maker(request.form['cname'])
+    new_category = Category(name=request.form['cname'], url=new_url, topic_id=topic.id)
     session.add(new_category)
     session.commit()
-    return redirect('show_topic', topic_url)
+    return redirect(url_for('show_topic', topic_url=topic_url))
   else:
-    topic = session.query(Topic).filter_by(url = topic_url).one()
     return render_template('new_category.html', topic=topic)
 
 
