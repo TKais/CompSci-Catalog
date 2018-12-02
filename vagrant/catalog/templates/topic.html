@@ -9,6 +9,6 @@
     </li>
     {% endfor %}
   </ul>
-  <a href="{{}}">New +</a>
+  <a href="{{url_for('create_category', topic_url = topic.url)}}">New Category</a>
 </div>
 {% endblock %}
