@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+<div id="new-article">
+  <form id="article-form" action="#" method="post">
+    <label for="article-name">Article Name</label>
+    <input id="article-name" type="text" maxlength="50" name="cname"/>
+    <label for="article-content">Article Content</label>
+    <textarea id="article-content"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock %}
