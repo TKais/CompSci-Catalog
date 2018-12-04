@@ -17,6 +17,16 @@ def url_maker(url):
   return url.replace(' ', '-').lower()
 
 
+def check_category_uniqueness(topic_id, name):
+  categories = session.query(Category).filter_by(topic_id=topic_id).all()
+  edited_name = name.replace(' ', '').lower()
+  for category in categories:
+    category_name = category.name.replace(' ', '').lower()
+    if edited_name == category_name:
+      return False
+  return True
+
+
 @app.route('/')
 @app.route('/topics/')
 def show_topics():
@@ -39,11 +49,16 @@ def show_topic(topic_url):
 def create_category(topic_url):
   topic = session.query(Topic).filter_by(url = topic_url).one()
   if request.method == 'POST':
-    new_url = url_maker(request.form['cname'])
-    new_category = Category(name=request.form['cname'], url=new_url, topic_id=topic.id)
-    session.add(new_category)
-    session.commit()
-    return redirect(url_for('show_topic', topic_url=topic_url))
+    isUnique = check_category_uniqueness(topic.id, request.form['cname']);
+    if isUnique:
+      new_url = url_maker(request.form['cname'])
+      new_category = Category(name=request.form['cname'], url=new_url, topic_id=topic.id)
+      session.add(new_category)
+      session.commit()
+      return redirect(url_for('show_topic', topic_url=topic_url))
+    else:
+      print('PLEASE CHOOSE A NEW CATEGORY')
+      return redirect(url_for('show_topic', topic_url=topic_url))
   else:
     return render_template('new_category.html', topic=topic)
 
