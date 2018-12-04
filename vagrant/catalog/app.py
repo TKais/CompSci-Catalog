@@ -57,13 +57,20 @@ def show_category(topic_url, category_url):
 
 @app.route('/topics/<topic_url>/categories/<category_url>/new/', methods=['GET', 'POST'])
 def create_article(topic_url, category_url):
-  return render_template('new_article.html')
+  if request.method == 'POST':
+    category = session.query(Category).filter_by(url=category_url).one()
+    new_article = Article(name=request.form['aname'], content=request.form['acontent'], category_id=category.id)
+    session.add(new_article)
+    session.commit()
+    return redirect(url_for('show_category', topic_url=topic_url, category_url=category_url))
+  else:
+    return render_template('new_article.html')
 
 
 @app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/')
 def show_article(topic_url, category_url, article_id):
   category = session.query(Category).filter_by(url=category_url).one()
-  article = session.query(Article).filter_by(category_id=category.id).one()
+  article = session.query(Article).filter_by(id=article_id).one()
   return render_template('article.html', article=article)
 
 
