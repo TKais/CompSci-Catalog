@@ -37,7 +37,6 @@ def show_topic(topic_url):
 
 @app.route('/topics/<topic_url>/categories/new/', methods=['GET', 'POST'])
 def create_category(topic_url):
-  print('new category')
   topic = session.query(Topic).filter_by(url = topic_url).one()
   if request.method == 'POST':
     new_url = url_maker(request.form['cname'])
@@ -56,9 +55,9 @@ def show_category(topic_url, category_url):
   return render_template('category.html', category=category, articles=articles, topic_url=topic_url)
 
 
-@app.route('/topics/<topic_name>/categories/<category_name>/new/', methods=['GET', 'POST'])
-def create_article(topic_name, category_name):
-  print('new article')
+@app.route('/topics/<topic_url>/categories/<category_url>/new/', methods=['GET', 'POST'])
+def create_article(topic_url, category_url):
+  return render_template('new_article.html')
 
 
 @app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/')
