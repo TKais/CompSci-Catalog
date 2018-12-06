@@ -36,12 +36,19 @@ def return_topics_JSON():
 @app.route('/topics/<topic_url>/JSON/')
 def return_topic_JSON(topic_url):
   topic = session.query(Topic).filter_by(url = topic_url).one()
-  return jsonify(topic=topic.serialize)
+  categories = session.query(Category).filter_by(topic_id=topic.id)
+  return jsonify(categories=[category.serialize for category in categories], topic=topic.serialize)
 
 @app.route('/topics/<topic_url>/categories/<category_url>/JSON')
 def return_category_JSON(topic_url, category_url):
   category = session.query(Category).filter_by(url = category_url).one()
+  articles = session.query(Article)
   return jsonify(category=category.serialize)
+
+@app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/JSON/')
+def return_article_JSON(topic_url, category_url, article_id):
+  article = session.query(Article).filter_by(id=article_id).one()
+  return jsonify(article=article.serialize)
 
 # HTML Endpoints
 
