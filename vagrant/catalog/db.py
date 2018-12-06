@@ -36,7 +36,8 @@ class Category(Base):
     return {
       'id': self.id,
       'name': self.name,
-      'url': self.url
+      'url': self.url,
+      'topic_id': self.topic_id,
     }
 
 
@@ -55,6 +56,7 @@ class Article(Base):
       'id': self.id,
       'name': self.name,
       'content': self.content,
+      'category_id': self.category_id,
     }
 
 
