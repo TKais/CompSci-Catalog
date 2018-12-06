@@ -26,6 +26,17 @@ def check_category_uniqueness(topic_id, name):
       return False
   return True
 
+# JSON APIs
+
+@app.route('/topics/JSON/')
+def return_topics_JSON():
+  topics = session.query(Topic)
+  return jsonify(topics=[topic.serialize for topic in topics])
+
+@app.route('/topics/<topic_url>/JSON/')
+def return_topic_JSON(topic_url):
+  topic = session.query(Topic).filter_by(url = topic_url).one()
+  return jsonify(topic=topic.serialize)
 
 @app.route('/')
 @app.route('/topics/')
@@ -33,10 +44,6 @@ def show_topics():
   topics = session.query(Topic)
   return render_template('topics.html', topics=topics)
 
-@app.route('/topics/JSON/')
-def return_topics_JSON():
-  topics = session.query(Topic)
-  return jsonify(topics=[topic.serialize for topic in topics])
 
 @app.route('/topics/<topic_url>/')
 def show_topic(topic_url):
