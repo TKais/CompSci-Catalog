@@ -38,6 +38,13 @@ def return_topic_JSON(topic_url):
   topic = session.query(Topic).filter_by(url = topic_url).one()
   return jsonify(topic=topic.serialize)
 
+@app.route('/topics/<topic_url>/categories/<category_url>/JSON')
+def return_category_JSON(topic_url, category_url):
+  category = session.query(Category).filter_by(url = category_url).one()
+  return jsonify(category=category.serialize)
+
+# HTML Endpoints
+
 @app.route('/')
 @app.route('/topics/')
 def show_topics():
