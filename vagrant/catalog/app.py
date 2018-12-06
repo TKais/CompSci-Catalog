@@ -107,12 +107,23 @@ def create_article(topic_url, category_url):
 def show_article(topic_url, category_url, article_id):
   category = session.query(Category).filter_by(url=category_url).one()
   article = session.query(Article).filter_by(id=article_id).one()
-  return render_template('article.html', article=article)
+  return render_template('article.html', article=article, topic_url=topic_url, category_url=category_url)
 
 
-@app.route('/topics/<topic_name>/categories/<category_name>/<article_id>/edit')
-def edit_article(topic_name, category_name, article_id):
-  print('Edit an article')
+@app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/edit/', methods=['GET', 'POST'])
+def edit_article(topic_url, category_url, article_id):
+  article = session.query(Article).filter_by(id = article_id).one()
+  if request.method == 'POST':
+    if request.form['aname']:
+      article.name = request.form['aname']
+    if request.form['acontent']:
+      article.content = request.form['acontent']
+    session.add(article)
+    session.commit()
+    return redirect(url_for('show_article', topic_url=topic_url, category_url=category_url, article_id=article_id))
+  else:
+    return render_template('edit_article.html', article=article)
+
 
 
 @app.route('/topics/<topic_name>/categories/<category_name>/<article_id>/delete')
