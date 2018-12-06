@@ -1,9 +1,8 @@
 {% extends "main.html" %}
 {% block content %}
-
 <div>
   <h1>{{article.name}}</h1>
   <p>{{article.content}}</p>
+  <a href="{{url_for('edit_article', topic_url=topic_url, category_url=category_url, article_id=article.id)}}">Edit</a>
 </div>
-
 {% endblock %}
