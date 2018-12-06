@@ -126,9 +126,15 @@ def edit_article(topic_url, category_url, article_id):
 
 
 
-@app.route('/topics/<topic_name>/categories/<category_name>/<article_id>/delete')
-def delete_article(topic_name, category_name, article_id):
-  print('Delete an article')
+@app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/delete/')
+def delete_article(topic_url, category_url, article_id):
+  article = session.query(Article).filter_by(id = article_id).one()
+  if request.method == 'POST':
+    session.delete(article)
+    session.commit()
+    return redirect(url_for('show_category', topic_url=topic_url, category_url=category_url))
+  else:
+    return render_template('delete_article.html', topic_url=topic_url, category_url=category_url, article_id=article_id, article=article)
 
 
 if __name__ == '__main__':
