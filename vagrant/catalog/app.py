@@ -140,24 +140,3 @@ def delete_article(topic_url, category_url, article_id):
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
-
-# [X] GET /
-# [X] GET /topics
-# [X] GET /topics/AI/
-# [X] GET /topics/AI/categories/new
-# [X] GET /topics/AI/categories/Python/
-# [X] GET /topics/AI/categories/Python/new
-# [X] GET /topics/AI/categories/Python/4
-# [X] GET /topics/AI/categories/Python/4/edit
-# [X] GET /topics/AI/categories/Python/4/delete
-
-
-# topics
-    # AI
-        # article
-        # article
-    # Software Engineering
-
-
-  
-
