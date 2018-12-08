@@ -126,7 +126,7 @@ def edit_article(topic_url, category_url, article_id):
 
 
 
-@app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/delete/')
+@app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/delete/', methods=['GET', 'POST'])
 def delete_article(topic_url, category_url, article_id):
   article = session.query(Article).filter_by(id = article_id).one()
   if request.method == 'POST':
