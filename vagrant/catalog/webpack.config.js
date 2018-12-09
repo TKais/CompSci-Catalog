@@ -7,7 +7,7 @@ module.exports = {
     './assets/css/main.scss'
   ],
   output: {
-    path: __dirname + '/js',
+    path: __dirname + '/public',
     filename: 'bundle.js'
   },
   module: {
