@@ -1,11 +1,9 @@
 var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: [
-    './assets/css/main.scss'
-  ],
+  entry: './assets/js/main.js',
   output: {
     path: __dirname + '/public',
     filename: 'bundle.js'
@@ -13,12 +11,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: ['babel-loader']
+      },
+      {
         test: /\.scss$/,
-        use: [
-          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
-        ]
+        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
       }
     ]
   },
@@ -27,15 +26,10 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: true,
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}),
+      new ExtractTextPlugin('style.css')
     ]
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ],
 };
