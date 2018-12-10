@@ -2,13 +2,22 @@
 {% block content %}
 <div id="topic">
   <h3>{{topic.name}}'s Page</h3>
-  <ul>
+  <div class="ui link cards">
     {% for category in categories %}
-    <li>
-      <a href="{{url_for('show_category', topic_url = topic.url, category_url = category.url)}}">{{category.name}}</a>
-    </li>
+      <a class="card" href="{{url_for('show_category', topic_url = topic.url, category_url = category.url)}}">
+        <div class="image">
+          {% if category.image %}
+            <img src="{{category.image}}">
+            {% else %}
+            <img src="{{url_for('static', filename = 'images/noimage.jpg')}}">
+          {% endif %}
+        </div>
+        <div class="content">
+          <div class="header">{{category.name}}</div>
+        </div>
+      </a>
     {% endfor %}
-  </ul>
+  </div>
   <a href="{{url_for('create_category', topic_url = topic.url)}}">New Category</a>
 </div>
 {% endblock %}
