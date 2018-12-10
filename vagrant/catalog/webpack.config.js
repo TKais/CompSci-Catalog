@@ -1,11 +1,7 @@
-var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-var OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 module.exports = {
   entry: './assets/js/main.js',
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/static',
     filename: 'bundle.js'
   },
   module: {
@@ -17,19 +13,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+        use: [{
+            loader: 'style-loader'
+          }, {
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+        }]
       }
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-      new ExtractTextPlugin('style.css')
     ]
   },
 };
