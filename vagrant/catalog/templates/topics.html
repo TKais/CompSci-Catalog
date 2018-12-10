@@ -5,7 +5,11 @@
     {% for topic in topics %}
       <a class="card" href="{{url_for('show_topic', topic_url = topic.url)}}">
         <div class="image">
-          <img src="{{url_for('static', filename='images/AI.jpeg')}}">
+          {% if topic.image %}
+            <img src="{{topic.image}}">
+          {% else %}
+            <img src="{{url_for('static', filename='images/AI.jpeg')}}">
+          {% endif %}
         </div>
         <div class="content">
           <div class="header">{{topic.name}}</div>

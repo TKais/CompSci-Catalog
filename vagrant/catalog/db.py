@@ -12,7 +12,7 @@ class Topic(Base):
   id = Column(Integer, primary_key = True)
   name = Column(String(250), nullable = False)
   url = Column(String(250), nullable = False)
-  # image = Column(String(250), nullable = False)
+  image = Column(String(250))
 
   @property
   def serialize(self):
@@ -20,7 +20,7 @@ class Topic(Base):
       'id': self.id,
       'name': self.name,
       'url': self.url,
-      # 'image': self.image
+      'image': self.image
     }
 
 
