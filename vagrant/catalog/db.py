@@ -12,13 +12,15 @@ class Topic(Base):
   id = Column(Integer, primary_key = True)
   name = Column(String(250), nullable = False)
   url = Column(String(250), nullable = False)
+  # image = Column(String(250), nullable = False)
 
   @property
   def serialize(self):
     return {
       'id': self.id,
       'name': self.name,
-      'url': self.url
+      'url': self.url,
+      # 'image': self.image
     }
 
 
@@ -28,6 +30,7 @@ class Category(Base):
   id = Column(Integer, primary_key = True)
   name = Column(String(250), nullable = False)
   url = Column(String(250), nullable = False)
+  image = Column(String(250))
   topic_id = Column(Integer, ForeignKey('topic.id'))
   topic = relationship(Topic)
 
@@ -37,6 +40,7 @@ class Category(Base):
       'id': self.id,
       'name': self.name,
       'url': self.url,
+      'image': self.image,
       'topic_id': self.topic_id,
     }
 
