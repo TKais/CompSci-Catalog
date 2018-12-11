@@ -1,10 +1,12 @@
 {% extends "main.html" %}
 {% block content %}
 <div id="new-category">
-  <form id="category-form" action="#" method="post">
-    <label for="category-name">Category Name</label>
-    <input id="category-name" type="text" maxlength="50" name="cname"/>
-    <button type="submit">Submit</button>
+  <form id="category-form" class="ui form" action="#" method="post">
+    <div class="field">
+      <label for="category-name">Category Name</label>
+      <input id="category-name" type="text" maxlength="50" name="cname"/>
+    </div>
+    <button class="ui primary button" type="submit">Submit</button>
   </form>
 </div>
 {% endblock %}

@@ -12,5 +12,5 @@
 {% else %}
   <p>There are no articles for this category</p>
 {% endif %}
-<a href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
+<a class="ui primary button" href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
 {% endblock %}

@@ -1,12 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 <div id="new-article">
-  <form id="article-form" action="#" method="post">
-    <label for="article-name">Article Name</label>
-    <input id="article-name" type="text" maxlength="50" name="aname"/>
-    <label for="article-content">Article Content</label>
-    <textarea id="article-content" name="acontent"></textarea>
-    <button type="submit">Submit</button>
+  <form id="article-form" class="ui form" action="#" method="post">
+    <div class="field">
+      <label for="article-name">Article Name</label>
+      <input id="article-name" type="text" maxlength="50" name="aname"/>
+    </div>
+    <div class="field">
+      <label for="article-content">Article Content</label>
+      <textarea id="article-content" rows="5" name="acontent"></textarea>
+    </div>
+    <button class="ui primary button" type="submit">Submit</button>
   </form>
 </div>
 {% endblock %}
