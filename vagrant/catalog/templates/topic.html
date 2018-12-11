@@ -8,8 +8,8 @@
         <div class="image">
           {% if category.image %}
             <img src="{{category.image}}">
-            {% else %}
-            <img src="{{url_for('static', filename = 'images/noimage.jpg')}}">
+          {% else %}
+            <img src="{{url_for('static', filename='images/noimage.jpg')}}">
           {% endif %}
         </div>
         <div class="content">
