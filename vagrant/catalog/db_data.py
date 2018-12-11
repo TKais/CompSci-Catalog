@@ -9,7 +9,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-AI = Topic(name='Artificial Intelligence', url='Artificial-Intelligence')
+AI = Topic(name='Artificial Intelligence', url='Artificial-Intelligence', image='./static/images/AI.jpeg')
 session.add(AI)
 session.commit()
 
@@ -25,7 +25,7 @@ unsupervised_learning = Category(name='Unsupervised Learning', url='Unupervised-
 session.add(unsupervised_learning)
 session.commit()
 
-human_computer_interaction = Topic(name='Human Computer Interaction', url='Human-Computer-Interaction')
+human_computer_interaction = Topic(name='Human Computer Interaction', url='Human-Computer-Interaction', image='./static/images/human-computer.jpg')
 session.add(human_computer_interaction)
 session.commit()
 
@@ -33,7 +33,7 @@ augmented_reality = Category(name='Augmented Reality', url='Augmented-Reality', 
 session.add(augmented_reality)
 session.commit()
 
-database_systems = Topic(name='Database Systems', url='Database-Systems')
+database_systems = Topic(name='Database Systems', url='Database-Systems', image='./static/images/db.png')
 session.add(database_systems)
 session.commit()
 
@@ -41,7 +41,7 @@ relational_model = Category(name='Relational Model', url='Relational-Model', top
 session.add(relational_model)
 session.commit()
 
-programming_languages = Topic(name='Programming Languages', url='Programming-Languages')
+programming_languages = Topic(name='Programming Languages', url='Programming-Languages', image='./static/images/languages.jpg')
 session.add(programming_languages)
 session.commit()
 
@@ -49,7 +49,7 @@ python = Category(name='Python', url='Python', topic_id=4)
 session.add(python)
 session.commit()
 
-computer_systems_networks = Topic(name='Computer Systems and Networks', url='Computer-Systems-Networks')
+computer_systems_networks = Topic(name='Computer Systems and Networks', url='Computer-Systems-Networks', image='./static/images/networks.jpg')
 session.add(computer_systems_networks)
 session.commit()
 
@@ -57,7 +57,7 @@ communication_networks = Category(name='Communication Networks', url='Communicat
 session.add(communication_networks)
 session.commit()
 
-software_engineering = Topic(name='Software Engineering', url='Software-Engineering')
+software_engineering = Topic(name='Software Engineering', url='Software-Engineering', image='./static/images/software-engineering.jpg')
 session.add(software_engineering)
 session.commit()
 
@@ -65,7 +65,7 @@ testing = Category(name='Testing', url='Testing', topic_id=6)
 session.add(testing)
 session.commit()
 
-vision_graphics = Topic(name='Vision and Graphics', url='Vision-and-Graphics')
+vision_graphics = Topic(name='Vision and Graphics', url='Vision-and-Graphics', image='./static/images/vision.jpg')
 session.add(vision_graphics)
 session.commit()
 
@@ -73,7 +73,7 @@ computer_vision = Category(name='Computer Vision', url='Computer-Vision', topic_
 session.add(computer_vision)
 session.commit()
 
-numerical_analysis = Topic(name='Numerical Analysis', url='Numerical-Analysis')
+numerical_analysis = Topic(name='Numerical Analysis', url='Numerical-Analysis', image='./static/images/numerical.jpg')
 session.add(numerical_analysis)
 session.commit()
 
@@ -81,7 +81,7 @@ differential_equations = Category(name='Differential Equations', url='Differenti
 session.add(differential_equations)
 session.commit()
 
-theory_of_computing = Topic(name='Theory of Computing', url='Theory-of-Computing')
+theory_of_computing = Topic(name='Theory of Computing', url='Theory-of-Computing', image='./static/images/theory.jpg')
 session.add(theory_of_computing)
 session.commit()
 
@@ -89,7 +89,7 @@ computational_complexity_theory = Category(name='Computational Complexity Theory
 session.add(computational_complexity_theory)
 session.commit()
 
-bioinformatics = Topic(name='Bioinformatics', url='Bioinformatics')
+bioinformatics = Topic(name='Bioinformatics', url='Bioinformatics', image='./static/images/bioinformatics.jpeg')
 session.add(bioinformatics)
 session.commit()
 
