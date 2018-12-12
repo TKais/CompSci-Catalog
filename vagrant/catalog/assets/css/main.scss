@@ -8,6 +8,9 @@ body {
     }
     &__content {
       margin-top: 2rem;
+      .cards {
+        justify-content: center;
+      }
     }
   }
 }
