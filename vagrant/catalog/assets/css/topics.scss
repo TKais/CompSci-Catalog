@@ -1,8 +1,10 @@
+@import './mixins/alignment';
+
 .container {
   &__content{
     &-topics {
       .cards {
-        justify-content: center;
+        @include center-content();
       }
     }
   }

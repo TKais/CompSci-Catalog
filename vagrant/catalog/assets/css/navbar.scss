@@ -1,9 +1,16 @@
 $navbar-margin-lg: 0 10rem 3rem;
 $navbar-margin-xs: 0 4rem 0;
+$item-border: 1px solid #CCC;
 
 #navbar {
   margin: $navbar-margin-lg;
   @media screen and (max-width: 540px) {
     margin: $navbar-margin-xs;
+  }
+  #navbar-home, #navbar-log {
+    border: $item-border;
+    &:active {
+      background-color: rgba(0,0,0,.05);
+    }
   }
 }
