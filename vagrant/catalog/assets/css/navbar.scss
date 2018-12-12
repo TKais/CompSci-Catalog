@@ -1,5 +1,9 @@
-$navbar-margin: 0 10rem 3rem;
+$navbar-margin-lg: 0 10rem 3rem;
+$navbar-margin-xs: 0 4rem 0;
 
 #navbar {
-  margin: $navbar-margin;
+  margin: $navbar-margin-lg;
+  @media screen and (max-width: 540px) {
+    margin: $navbar-margin-xs;
+  }
 }
