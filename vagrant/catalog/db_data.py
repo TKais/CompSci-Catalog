@@ -13,7 +13,7 @@ AI = Topic(name='Artificial Intelligence', url='Artificial-Intelligence', image=
 session.add(AI)
 session.commit()
 
-supervised_learning = Category(name='Supervised Learning', url='Supervised-Learning', topic_id=1)
+supervised_learning = Category(name='Supervised Learning', url='Supervised-Learning', topic_id=1, image='./static/images/supervised.png')
 session.add(supervised_learning)
 session.commit()
 
@@ -21,7 +21,7 @@ neural_networks = Article(name='Neural Networks', category_id=1, content='Artifi
 session.add(neural_networks)
 session.commit()
 
-unsupervised_learning = Category(name='Unsupervised Learning', url='Unupervised-Learning', topic_id=1)
+unsupervised_learning = Category(name='Unsupervised Learning', url='Unupervised-Learning', topic_id=1, image='./static/images/unsupervised.png')
 session.add(unsupervised_learning)
 session.commit()
 
@@ -29,7 +29,7 @@ human_computer_interaction = Topic(name='Human Computer Interaction', url='Human
 session.add(human_computer_interaction)
 session.commit()
 
-augmented_reality = Category(name='Augmented Reality', url='Augmented-Reality', topic_id=2)
+augmented_reality = Category(name='Augmented Reality', url='Augmented-Reality', topic_id=2, image='./static/images/augmented-reality.jpg')
 session.add(augmented_reality)
 session.commit()
 
@@ -37,7 +37,7 @@ database_systems = Topic(name='Database Systems', url='Database-Systems', image=
 session.add(database_systems)
 session.commit()
 
-relational_model = Category(name='Relational Model', url='Relational-Model', topic_id=3)
+relational_model = Category(name='Relational Model', url='Relational-Model', topic_id=3, image='./static/images/relational.jpg')
 session.add(relational_model)
 session.commit()
 
@@ -45,7 +45,7 @@ programming_languages = Topic(name='Programming Languages', url='Programming-Lan
 session.add(programming_languages)
 session.commit()
 
-python = Category(name='Python', url='Python', topic_id=4)
+python = Category(name='Python', url='Python', topic_id=4, image='./static/images/python.png')
 session.add(python)
 session.commit()
 
@@ -53,7 +53,7 @@ computer_systems_networks = Topic(name='Computer Systems and Networks', url='Com
 session.add(computer_systems_networks)
 session.commit()
 
-communication_networks = Category(name='Communication Networks', url='Communication-Networks', topic_id=5)
+communication_networks = Category(name='Communication Networks', url='Communication-Networks', topic_id=5, image='./static/images/comm-networks.jpg')
 session.add(communication_networks)
 session.commit()
 
@@ -61,7 +61,7 @@ software_engineering = Topic(name='Software Engineering', url='Software-Engineer
 session.add(software_engineering)
 session.commit()
 
-testing = Category(name='Testing', url='Testing', topic_id=6)
+testing = Category(name='Testing', url='Testing', topic_id=6, image='./static/images/testing.png')
 session.add(testing)
 session.commit()
 
@@ -69,7 +69,7 @@ vision_graphics = Topic(name='Vision and Graphics', url='Vision-and-Graphics', i
 session.add(vision_graphics)
 session.commit()
 
-computer_vision = Category(name='Computer Vision', url='Computer-Vision', topic_id=7)
+computer_vision = Category(name='Computer Vision', url='Computer-Vision', topic_id=7, image='./static/images/vision2.jpg')
 session.add(computer_vision)
 session.commit()
 
@@ -77,7 +77,7 @@ numerical_analysis = Topic(name='Numerical Analysis', url='Numerical-Analysis', 
 session.add(numerical_analysis)
 session.commit()
 
-differential_equations = Category(name='Differential Equations', url='Differential-Equations', topic_id=8)
+differential_equations = Category(name='Differential Equations', url='Differential-Equations', topic_id=8, image='./static/images/differential.png')
 session.add(differential_equations)
 session.commit()
 
@@ -85,7 +85,7 @@ theory_of_computing = Topic(name='Theory of Computing', url='Theory-of-Computing
 session.add(theory_of_computing)
 session.commit()
 
-computational_complexity_theory = Category(name='Computational Complexity Theory', url='Computational-Complexity-Theory', topic_id=9)
+computational_complexity_theory = Category(name='Computational Complexity Theory', url='Computational-Complexity-Theory', topic_id=9, image='./static/images/complexity.jpg')
 session.add(computational_complexity_theory)
 session.commit()
 
@@ -93,7 +93,7 @@ bioinformatics = Topic(name='Bioinformatics', url='Bioinformatics', image='./sta
 session.add(bioinformatics)
 session.commit()
 
-DNA_sequencing = Category(name='DNA sequencing', url='DNA-Sequencing', topic_id=10)
+DNA_sequencing = Category(name='DNA sequencing', url='DNA-Sequencing', topic_id=10, image='./static/images/DNA.jpg')
 session.add(DNA_sequencing)
 session.commit()
 
