@@ -2,4 +2,12 @@ $page-margin: 4rem;
 
 body {
   margin: $page-margin;
+  #container {
+    .title {
+      text-align: center;
+    }
+    &__content {
+      margin-top: 2rem;
+    }
+  }
 }
