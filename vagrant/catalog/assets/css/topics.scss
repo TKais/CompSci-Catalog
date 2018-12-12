@@ -1,0 +1,9 @@
+.container {
+  &__content{
+    &-topics {
+      .cards {
+        justify-content: center;
+      }
+    }
+  }
+}
