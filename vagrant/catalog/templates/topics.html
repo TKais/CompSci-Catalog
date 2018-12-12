@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% block content %}
-<div id="all-topics">
+<div class="container__content-topics">
   <div class="ui link cards">
     {% for topic in topics %}
       <a class="card" href="{{url_for('show_topic', topic_url = topic.url)}}">
