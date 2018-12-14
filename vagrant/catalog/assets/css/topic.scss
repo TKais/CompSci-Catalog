@@ -1,0 +1,12 @@
+.topic {
+  display: flex;
+  justify-content: center;
+  &__header {
+    &-title {
+      text-align: center;
+    }
+    &-button {
+      justify-content: center;
+    }
+  }
+}
