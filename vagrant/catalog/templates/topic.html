@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 <div id="topic">
-  <h4 class="topic__title">{{topic.name}}</h4>
+  <h3 class="topic__title">{{topic.name}}</h3>
   <div class="ui link cards">
     {% for category in categories %}
       <a class="card" href="{{url_for('show_category', topic_url = topic.url, category_url = category.url)}}">
