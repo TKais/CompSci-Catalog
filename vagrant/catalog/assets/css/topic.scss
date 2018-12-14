@@ -1,8 +1,17 @@
+@import './utils/colors';
+
 .topic {
-  &__title {
-    text-align: center;
-  }
-  &__button {
-    justify-content: center;
+  &__info {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4rem;
+    align-items: baseline;
+    &-title {
+      text-align: center;
+      color: $title-color;
+    }
+    &-button {
+      justify-content: center;
+    }
   }
 }
