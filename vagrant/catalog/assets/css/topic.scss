@@ -1,12 +1,8 @@
 .topic {
-  display: flex;
-  justify-content: center;
-  &__header {
-    &-title {
-      text-align: center;
-    }
-    &-button {
-      justify-content: center;
-    }
+  &__title {
+    text-align: center;
+  }
+  &__button {
+    justify-content: center;
   }
 }
