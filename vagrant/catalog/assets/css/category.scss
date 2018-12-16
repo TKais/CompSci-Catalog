@@ -1,12 +1,23 @@
+@import './utils/colors';
+
 .category {
+  width: 100%;
   &.new-category {
     width: 55%;
     margin-top: 5rem;
-    &__form-button {
-      position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 10rem;
+  }
+  &__info {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 4rem;
+    align-items: baseline;
+    &-title {
+      text-align: center;
+      color: $title-color;
+    }
+    &-button {
+      justify-content: center;
     }
   }
 }
