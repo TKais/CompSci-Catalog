@@ -1,16 +1,28 @@
 {% extends "main.html" %}
 {% block content %}
-<h1>{{category.name}}'s Page</h1>
-{% if articles %}
-  <ul>
-    {% for article in articles %}
-      <li>
-        <a href="{{url_for('show_article', category_url=category.url, article_id=article.id, topic_url=topic_url)}}">{{article.name}}</a>
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>There are no articles for this category</p>
-{% endif %}
-<a class="ui primary button" href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
+<div class="category">
+  <div class="category__info">
+    <h3 class="category__info-title">{{category.name}}</h3>
+    <a class="ui primary button" href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
+  <div class="ui link cards">
+    {% if articles %}
+      {% for article in articles %}
+        <a class="card" href="{{url_for('show_article', category_url=category.url, article_id=article.id, topic_url=topic_url)}}">
+          <div class="image">
+            {% if article.image %}
+              <img src="{{article.image}}">
+            {% else %}
+              <img src="{{url_for('static', filename='images/noimage.jpg')}}">
+            {% endif %}
+          </div>
+          <div class="content">
+            <div class="header">{{article.name}}</div>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <p>There are no articles for this category</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
