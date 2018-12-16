@@ -3,7 +3,8 @@
 <div class="category">
   <div class="category__info">
     <h3 class="category__info-title">{{category.name}}</h3>
-    <a class="ui primary button" href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
+    <a class="ui primary button category__info-button" href="{{url_for('create_article', topic_url=topic_url, category_url=category.url)}}">New Article</a>
+  </div>
   <div class="ui link cards">
     {% if articles %}
       {% for article in articles %}
