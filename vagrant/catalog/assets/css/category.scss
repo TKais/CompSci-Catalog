@@ -1,10 +1,12 @@
-.new-category {
-  width: 55%;
-  margin-top: 5rem;
-  &__form-button {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10rem;
+.category {
+  &.new-category {
+    width: 55%;
+    margin-top: 5rem;
+    &__form-button {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10rem;
+    }
   }
 }
