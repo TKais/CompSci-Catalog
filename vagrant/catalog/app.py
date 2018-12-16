@@ -122,7 +122,7 @@ def edit_article(topic_url, category_url, article_id):
     session.commit()
     return redirect(url_for('show_article', topic_url=topic_url, category_url=category_url, article_id=article_id))
   else:
-    return render_template('edit_article.html', article=article)
+    return render_template('edit_article.html', topic_url=topic_url, category_url=category_url, article_id=article_id, article=article)
 
 
 
