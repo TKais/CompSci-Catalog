@@ -1,8 +1,8 @@
 {% extends "main.html" %}
 {% block content %}
-<div>
+<div class="article article__form--delete">
   <h4>Are you sure you want to delete article <em>{{article.name}}</em>?</h4>
-  <form action="#" method="post">
+  <form class="ui form" action="#" method="post">
     <a class="ui button" href="{{url_for('show_category', topic_url=topic_url, category_url=category_url)}}">Cancel</a>
     <button class="negative ui button" type="submit">Delete</button>
   </form>
