@@ -1,3 +1,5 @@
+@import './mixins/positioning';
+
 $page-margin: 4rem;
 
 body {
@@ -8,8 +10,7 @@ body {
     }
     &__content {
       margin-top: 2rem;
-      display: flex;
-      justify-content: center;
+      @include flex-center();
       .cards {
         justify-content: center;
       }
