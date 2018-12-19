@@ -1,4 +1,5 @@
 @import './utils/colors';
+@import './mixins/positioning';
 
 .category {
   width: 100%;
@@ -19,5 +20,8 @@
     &-button {
       justify-content: center;
     }
+  }
+  &__form-buttons {
+    @include flex-center();
   }
 }
