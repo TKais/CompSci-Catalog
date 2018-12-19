@@ -1,4 +1,5 @@
 @import './utils/colors';
+@import './mixins/positioning';
 
 .article {
   width: 100%;
@@ -13,8 +14,7 @@
       margin-bottom: 2rem !important;
     }
     &-buttons {
-      display: flex;
-      justify-content: center;
+      @include flex-center();
     } 
   }
   &__form--delete {
@@ -25,8 +25,7 @@
     margin-top: 5rem;
   }
   &__form-buttons {
-    display: flex;
-    justify-content: center;
+    @include flex-center();
     button {
       width: 9rem;
     }
