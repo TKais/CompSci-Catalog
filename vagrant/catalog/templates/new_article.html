@@ -1,7 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 <div class="article article__new">
-  <form id="article-form" class="ui form" action="#" method="post">
+  <form id="article__form" class="ui form" action="#" method="post">
     <div class="field">
       <label for="article-name">Article Name</label>
       <input id="article-name" type="text" maxlength="50" name="aname"/>
@@ -10,7 +10,9 @@
       <label for="article-content">Article Content</label>
       <textarea id="article-content" rows="5" name="acontent"></textarea>
     </div>
-    <button class="ui primary button" type="submit">Submit</button>
+    <div class="article__form-buttons">
+      <button class="ui primary button" type="submit">Submit</button>
+    </div>
   </form>
 </div>
 {% endblock %}
