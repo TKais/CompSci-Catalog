@@ -24,6 +24,13 @@
     width: 55%;
     margin-top: 5rem;
   }
+  &__form-buttons {
+    display: flex;
+    justify-content: center;
+    button {
+      width: 9rem;
+    }
+  }
   &__info {
     width: 100%;
     display: flex;
