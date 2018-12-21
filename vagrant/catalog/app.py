@@ -5,6 +5,8 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from db import Base, Topic, Category, Article
 from flask import session as login_session
+import random
+import string
 
 app = Flask(__name__)
 
