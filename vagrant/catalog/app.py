@@ -4,6 +4,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, f
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from db import Base, Topic, Category, Article
+from flask import session as login_session
 
 app = Flask(__name__)
 
@@ -25,6 +26,13 @@ def check_category_uniqueness(topic_id, name):
     if edited_name == category_name:
       return False
   return True
+
+# LOGIN Endpoints
+
+@app.route('/login/')
+def show_login():
+  # Create anti-forgery state token
+  state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
 
 # JSON APIs
 
