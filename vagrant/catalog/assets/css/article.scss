@@ -1,6 +1,8 @@
 @import './utils/colors';
 @import './mixins/positioning';
 
+$button-width: 9rem;
+
 .article {
   width: 100%;
   &__new {
@@ -15,6 +17,9 @@
     }
     &-buttons {
       @include flex-center();
+      .button {
+        width: $button-width;
+      }
     } 
   }
   &__form--delete {
@@ -24,13 +29,13 @@
     width: 55%;
     margin-top: 5rem;
     .button {
-      width: 9rem;
+      width: $button-width;
     }
   }
   &__form-buttons {
     @include flex-center();
     button {
-      width: 9rem;
+      width: $button-width;
     }
   }
   &__info {
