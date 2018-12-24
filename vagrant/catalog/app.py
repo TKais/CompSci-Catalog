@@ -34,7 +34,7 @@ def check_category_uniqueness(topic_id, name):
 @app.route('/login/')
 def show_login():
   # Create anti-forgery state token
-  state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
+  state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(32))
   login_session['state'] = state
   return render_template('login.html', STATE = state)
 
@@ -151,4 +151,5 @@ def delete_article(topic_url, category_url, article_id):
 
 if __name__ == '__main__':
     app.debug = True
+    app.secret_key = 'super_secret_key'
     app.run(host='0.0.0.0', port=5000)
