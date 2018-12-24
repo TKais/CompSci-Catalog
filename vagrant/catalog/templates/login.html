@@ -1,14 +1,7 @@
 {% extends "main.html" %}
 {% block content %}
 <div class="sign-in">
-  <div 
-    class="g-signin2"
-    data-scope="profile email"
-    data-redirecturi="postmessage"
-    data-accesstype="offline"
-    data-cookiepolicy="single_host_origin"
-    data-callback="googleInit"
-    data-approvalprompt="force"
-  ></div>
+  <div id="login-button"></div>
+  <div class="sign-in__result"></div>
 </div>
 {% endblock %}
