@@ -38,6 +38,11 @@ def show_login():
   login_session['state'] = state
   return render_template('login.html', STATE = state)
 
+@app.route('/connect', methods=['POST'])
+def google_connect():
+  print(request.args.get('state'))
+  print(login_session['state'])
+
 # JSON APIs
 
 @app.route('/topics/JSON/')
