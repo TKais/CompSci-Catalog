@@ -5,9 +5,12 @@ from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
 from db import Base, Topic, Category, Article
 from flask import session as login_session
+from oauth2client.client import flow_from_clientsecrets
+from oauth2client.client import FlowExchangeError
 import random
 import string
 import json
+import httplib2
 
 app = Flask(__name__)
 
@@ -41,11 +44,29 @@ def show_login():
 
 @app.route('/connect', methods=['POST'])
 def google_connect():
-  print(request.get_data());
+  print(request.get_data())
   print(request.args.get('state'))
   print(login_session['state'])
   if request.args.get('state') != login_session['state']:
-    # do stuff
+    response = make_response(json.dumps('Invalid state parameter.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+  code = request.get_data()
+
+  try:
+    # Turn the authorization code into a credentials object
+    oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+    oauth_flow.redirect_uri = 'postmessage'
+    credentials = oauth_flow.step2_exchange(code)
+  except FlowExchangeError:
+    response = make_response(json.dumps('Failed to upgrade the authorization code.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Check that the access token is valid.
+  access_token = credentials.access_token
+  url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s' % access_token)
+  http = httplib2.Http()
   return redirect(url_for('show_topics'));
 
 # JSON APIs
