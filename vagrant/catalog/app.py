@@ -7,6 +7,7 @@ from db import Base, Topic, Category, Article
 from flask import session as login_session
 import random
 import string
+import json
 
 app = Flask(__name__)
 
@@ -40,8 +41,12 @@ def show_login():
 
 @app.route('/connect', methods=['POST'])
 def google_connect():
+  print(request.get_data());
   print(request.args.get('state'))
   print(login_session['state'])
+  if request.args.get('state') != login_session['state']:
+    # do stuff
+  return redirect(url_for('show_topics'));
 
 # JSON APIs
 
