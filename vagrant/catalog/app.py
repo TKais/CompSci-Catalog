@@ -67,6 +67,20 @@ def google_connect():
   access_token = credentials.access_token
   url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s' % access_token)
   http = httplib2.Http()
+  result = json.loads(h.request(url, 'GET')[1])
+
+  # If there was an error in the access token info, abort.
+  if result.get('error') is not None:
+    response = make_response(json.dumps(result.get('error')), 500)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Verify that the access token is used for the intended user.
+  google_id = credentials.id_token['sub']
+  if result['user_id'] != gplus_id:
+    response = make_response(json.dumps('Token's user ID doesn't match given user ID.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
   return redirect(url_for('show_topics'));
 
 # JSON APIs
