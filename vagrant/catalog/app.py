@@ -14,6 +14,9 @@ import httplib2
 
 app = Flask(__name__)
 
+CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+APPLICATION_NAME = "CompSci Catalog"
+
 engine = create_engine('sqlite:///compscicatalog.db?check_same_thread=False')
 Base.metadata.bind = engine
 
@@ -77,8 +80,15 @@ def google_connect():
 
   # Verify that the access token is used for the intended user.
   google_id = credentials.id_token['sub']
-  if result['user_id'] != gplus_id:
+  if result['user_id'] != google_id:
     response = make_response(json.dumps('Token's user ID doesn't match given user ID.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Verify that the access token is valid for this app.
+  if result['issued_to'] != CLIENT_ID:
+    response = make_response(json.dumps('Token\'s client ID does not match app\'s.'), 401)
+    print 'Token\'s client ID does not match app\'s.'
     response.headers['Content-Type'] = 'application/json'
     return response
   return redirect(url_for('show_topics'));
