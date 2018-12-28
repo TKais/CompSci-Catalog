@@ -91,6 +91,25 @@ def google_connect():
     print 'Token\'s client ID does not match app\'s.'
     response.headers['Content-Type'] = 'application/json'
     return response
+
+  stored_access_token = login_session.get('access_token')
+  stored_google_id = login_session.get('google_id')
+
+  if stored_access_token is not None and google_id == stored_google_id:
+    response = make_response(json.dumps('Current user is already connected.'), 200)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Store the access token in the session for later use.
+  login_session['access_token'] = credentials.access_token
+  login_session['google_id'] = google_id
+
+  # Get user info
+  userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
+  params = {'access_token': credentials.access_token, 'alt': 'json'}
+  answer = requests.get(userinfo_url, params=params)
+
+
   return redirect(url_for('show_topics'));
 
 # JSON APIs
