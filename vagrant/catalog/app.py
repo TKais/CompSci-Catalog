@@ -55,6 +55,7 @@ def google_connect():
     response.headers['Content-Type'] = 'application/json'
     return response
   code = request.get_data()
+  print('CODE---->', code)
 
   try:
     # Turn the authorization code into a credentials object
@@ -68,9 +69,11 @@ def google_connect():
 
   # Check that the access token is valid.
   access_token = credentials.access_token
-  url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s' % access_token)
+  url = ('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=%s' % access_token)
   http = httplib2.Http()
   result = json.loads(h.request(url, 'GET')[1])
+
+  print(result)
 
   # If there was an error in the access token info, abort.
   if result.get('error') is not None:
@@ -81,14 +84,13 @@ def google_connect():
   # Verify that the access token is used for the intended user.
   google_id = credentials.id_token['sub']
   if result['user_id'] != google_id:
-    response = make_response(json.dumps('Token's user ID doesn't match given user ID.'), 401)
+    response = make_response(json.dumps('Token\'s user ID doesn\'t match given user ID.'), 401)
     response.headers['Content-Type'] = 'application/json'
     return response
 
   # Verify that the access token is valid for this app.
   if result['issued_to'] != CLIENT_ID:
     response = make_response(json.dumps('Token\'s client ID does not match app\'s.'), 401)
-    print 'Token\'s client ID does not match app\'s.'
     response.headers['Content-Type'] = 'application/json'
     return response
 
@@ -105,9 +107,15 @@ def google_connect():
   login_session['google_id'] = google_id
 
   # Get user info
-  userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
+  userinfo_url = 'https://www.googleapis.com/oauth2/v1/userinfo'
   params = {'access_token': credentials.access_token, 'alt': 'json'}
   answer = requests.get(userinfo_url, params=params)
+
+  data = answer.json()
+
+  login_session['username'] = data['name']
+  login_session['picture'] = data['picture']
+  login_session['email'] = data['email']
 
 
   return redirect(url_for('show_topics'));
