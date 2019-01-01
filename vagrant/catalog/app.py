@@ -47,19 +47,18 @@ def show_login():
 
 @app.route('/connect', methods=['POST'])
 def google_connect():
-  print(request.get_data())
-  print(request.args.get('state'))
-  print(login_session['state'])
+  print(request.args.get('state') == login_session['state'])
+
   if request.args.get('state') != login_session['state']:
     response = make_response(json.dumps('Invalid state parameter.'), 401)
     response.headers['Content-Type'] = 'application/json'
     return response
   code = request.get_data()
-  print('CODE---->', code)
 
   try:
     # Turn the authorization code into a credentials object
     oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+    print(oauth_flow)
     oauth_flow.redirect_uri = 'postmessage'
     credentials = oauth_flow.step2_exchange(code)
   except FlowExchangeError:
@@ -164,8 +163,8 @@ def show_topic(topic_url):
 def create_category(topic_url):
   topic = session.query(Topic).filter_by(url = topic_url).one()
   if request.method == 'POST':
-    isUnique = check_category_uniqueness(topic.id, request.form['cname']);
-    if isUnique:
+    is_unique = check_category_uniqueness(topic.id, request.form['cname']);
+    if is_unique:
       new_url = url_maker(request.form['cname'])
       new_category = Category(name=request.form['cname'], url=new_url, topic_id=topic.id)
       session.add(new_category)
@@ -173,7 +172,7 @@ def create_category(topic_url):
       return redirect(url_for('show_topic', topic_url=topic_url))
     else:
       print('PLEASE CHOOSE A NEW CATEGORY')
-      return redirect(url_for('show_topic', topic_url=topic_url))
+      return render_template('new_category.html', topic=topic, error=True)
   else:
     return render_template('new_category.html', topic=topic)
 
