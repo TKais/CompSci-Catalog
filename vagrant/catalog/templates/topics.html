@@ -6,7 +6,7 @@
       <a class="card" href="{{url_for('show_topic', topic_url = topic.url)}}">
         <div class="image">
           {% if topic.image %}
-            <img src="{{topic.image}}">
+            <img src="{{url_for('static', filename='images/' + topic.image)}}">
           {% else %}
             <img src="{{url_for('static', filename='images/noimage.jpg')}}">
           {% endif %}
