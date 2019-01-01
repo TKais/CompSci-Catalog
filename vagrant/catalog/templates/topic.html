@@ -10,7 +10,7 @@
       <a class="card" href="{{url_for('show_category', topic_url = topic.url, category_url = category.url)}}">
         <div class="image">
           {% if category.image %}
-            <img src="{{category.image}}">
+            <img src="{{url_for('static', filename='images/' + category.image)}}">
           {% else %}
             <img src="{{url_for('static', filename='images/noimage.jpg')}}">
           {% endif %}
