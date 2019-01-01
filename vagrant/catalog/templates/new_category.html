@@ -1,6 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 <div class="category category__new">
+  {% if error %}
+    <div class="category__error">
+      <div class="ui negative message">
+        <div class="header">
+          We're sorry, we can't create that category
+        </div>
+        <p>That category name has already been created. Please choose a new category name or select this category name from the topic's category list</p>
+      </div>
+    </div>
+  {% endif %}
   <form class="ui form category__form" action="#" method="post">
     <div class="field">
       <label for="category-name">Category Name</label>
