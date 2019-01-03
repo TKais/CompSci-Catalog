@@ -73,24 +73,22 @@ def google_connect():
   # Check that the access token is valid.
   url = ('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=%s' % token)
   print(url)
-  response = http.get(url)
-  data = response.json()
-  # result = json.loads(str_response)
+  data = http.get(url).json()
 
-  print(data)
+  print(data['email_verified'])
 
   # # If there was an error in the access token info, abort.
-  # if result.get('error') is not None:
-  #   response = make_response(json.dumps(result.get('error')), 500)
-  #   response.headers['Content-Type'] = 'application/json'
-  #   return response
+  if data['email_verified'] != 'true':
+    response = make_response(json.dumps('Email could not be verified.'), 500)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
   # # Verify that the access token is used for the intended user.
-  # google_id = credentials.id_token['sub']
-  # if result['user_id'] != google_id:
-  #   response = make_response(json.dumps('Token\'s user ID doesn\'t match given user ID.'), 401)
-  #   response.headers['Content-Type'] = 'application/json'
-  #   return response
+  google_id = data['sub']
+  if userid != google_id:
+    response = make_response(json.dumps('Token\'s user ID doesn\'t match given user ID.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
   # # Verify that the access token is valid for this app.
   # if result['issued_to'] != CLIENT_ID:
@@ -122,7 +120,7 @@ def google_connect():
   # login_session['email'] = data['email']
 
 
-  # return redirect(url_for('show_topics'));
+  return data;
 
 # JSON APIs
 
