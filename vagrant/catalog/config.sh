@@ -11,9 +11,8 @@ pip3 install flask --user
 pip3 install Flask-Login==0.1.3 --user
 pip3 install oauth2client --user
 pip3 install requests --user
-pip3 install httplib2 --user
 pip3 install sqlalchemy --user
-npm install
+pip3 install --upgrade google-auth --user
 npm rebuild node-sass
 npm run build
 python3 db.py
