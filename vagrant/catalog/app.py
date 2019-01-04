@@ -88,7 +88,7 @@ def google_connect():
   url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
          % access_token)
   data = requests.get(url).json()
-  print(data)
+
   # If there was an error in the access token info, abort.
   if data.get('error') is not None:
     response = make_response(json.dumps(data.get('error')), 500)
@@ -125,7 +125,6 @@ def google_connect():
   answer = requests.get(userinfo_url, params=params)
 
   user_data = answer.json()
-  print(user_data)
 
   login_session['username'] = user_data['name']
   login_session['picture'] = user_data['picture']
@@ -140,7 +139,11 @@ def google_connect():
 
   output = ''
   output += '<h1>Welcome, '
-  output += user_data['email']
+  output += login_session['username']
+  output += '!</h1>'
+  output += '<img src="'
+  output += login_session['picture']
+  output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
 
   return output
 
@@ -196,7 +199,6 @@ def create_category(topic_url):
       session.commit()
       return redirect(url_for('show_topic', topic_url=topic_url))
     else:
-      print('PLEASE CHOOSE A NEW CATEGORY')
       return render_template('new_category.html', topic=topic, error=True)
   else:
     return render_template('new_category.html', topic=topic)
