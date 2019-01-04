@@ -44,6 +44,7 @@
   }
 
   function onFailure(err) {
-    console.log('ERROR!----->', err);
+    const responseDiv = document.getElementById('sign-in__result');
+    responseDiv.innerHTML = err;
   }
 })();
