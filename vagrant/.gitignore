@@ -3,4 +3,4 @@ __pycache__
 .vagrant
 node_modules/
 package-lock.json
-static/
+static/bundle.js
