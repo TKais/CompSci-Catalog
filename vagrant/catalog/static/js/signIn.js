@@ -3,7 +3,7 @@
   window.renderButton = function renderButton() {
     gapi.signin2.render('login-button', {
       'clientid': '432981277858-bje89csb0so8l9d9j1lj2cv9pbhqd8r2.apps.googleusercontent.com',
-      'scope': 'openid email profile',
+      'scope': 'openid email',
       'cookiepolicy': 'single_host_origin',
       'redirecturi': 'postmessage',
       'accesstype': 'offline',
