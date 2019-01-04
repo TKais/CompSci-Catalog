@@ -3,7 +3,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, flash, make_response
 from sqlalchemy import create_engine, asc
 from sqlalchemy.orm import sessionmaker
-from db import Base, Topic, Category, Article
+from db import Base, Topic, Category, Article, User
 from flask import session as login_session
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
@@ -23,6 +23,8 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# Helper methods
+
 def url_maker(url):
   return url.replace(' ', '-').lower()
 
@@ -35,6 +37,23 @@ def check_category_uniqueness(topic_id, name):
     if edited_name == category_name:
       return False
   return True
+
+
+def find_user(email):
+  try:
+    user = session.query(User).filter_by(email=email).one()
+    return user.id
+  except:
+    return None
+
+
+def create_user(login_session):
+    new_user = User(name=login_session['username'], email=login_session[
+                   'email'], picture=login_session['picture'])
+    session.add(new_user)
+    session.commit()
+    user = session.query(User).filter_by(email=login_session['email']).one()
+    return user.id
 
 # LOGIN Endpoints
 
@@ -75,6 +94,55 @@ def google_connect():
     response = make_response(json.dumps(data.get('error')), 500)
     response.headers['Content-Type'] = 'application/json'
     return response
+
+  # Verify that the access token is used for the intended user.
+  google_id = credentials.id_token['sub']
+  if data['user_id'] != google_id:
+    response = make_response(json.dumps("Token's user ID doesn't match given user ID."), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Verify that the access token is valid for this app.
+  if data['issued_to'] != CLIENT_ID:
+    response = make_response(json.dumps("Token's client ID does not match app's."), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+  # Store the access token in the session for later use.
+  login_session['access_token'] = credentials.access_token
+  login_session['google_id'] = google_id
+
+  stored_access_token = login_session.get('access_token')
+  stored_google_id = login_session.get('google_id')
+  # if stored_access_token is not None and google_id == stored_google_id:
+  #   response = make_response(json.dumps('Current user is already connected.'), 200)
+  #   response.headers['Content-Type'] = 'application/json'
+  #   return response
+
+  # Get user info
+  userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
+  params = {'access_token': credentials.access_token, 'alt': 'json'}
+  answer = requests.get(userinfo_url, params=params)
+
+  user_data = answer.json()
+  print(user_data)
+
+  login_session['username'] = user_data['name']
+  login_session['picture'] = user_data['picture']
+  login_session['email'] = user_data['email']
+  login_session['provider'] = 'google'
+
+  # see if user exists, if it doesn't make a new one
+  user_id = find_user(user_data['email'])
+  if not user_id:
+      user_id = create_user(login_session)
+  login_session['user_id'] = user_id
+
+  output = ''
+  output += '<h1>Welcome, '
+  output += user_data['email']
+
+  return output
 
 # JSON APIs
 
