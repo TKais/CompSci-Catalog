@@ -7,12 +7,10 @@ from db import Base, Topic, Category, Article
 from flask import session as login_session
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
-from google.oauth2 import id_token
-from google.auth.transport import requests
 import random
 import string
 import json
-import requests as http
+import requests
 
 app = Flask(__name__)
 
@@ -49,78 +47,34 @@ def show_login():
 
 @app.route('/connect', methods=['POST'])
 def google_connect():
-  print(request.args.get('state') == login_session['state'])
-
   if request.args.get('state') != login_session['state']:
     response = make_response(json.dumps('Invalid state parameter.'), 401)
     response.headers['Content-Type'] = 'application/json'
     return response
-  token_dict = dict(request.form)
-  token = next(iter(token_dict))
+
+  code = request.data
 
   try:
-    idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
-    if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-      raise ValueError('Wrong issuer.')
-
-    userid = idinfo['sub']
-    print('USER SERVER----->', userid)
-
-  except ValueError:
-    # Invalid token
-    pass
+    # Upgrade the authorization code into a credentials object
+    oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+    oauth_flow.redirect_uri = 'postmessage'
+    credentials = oauth_flow.step2_exchange(code)
+  except FlowExchangeError:
+    response = make_response(json.dumps('Failed to upgrade the authorization code.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
   # Check that the access token is valid.
-  url = ('https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=%s' % token)
-  print(url)
-  data = http.get(url).json()
-
-  print(data['email_verified'])
-
+  access_token = credentials.access_token
+  url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=%s'
+         % access_token)
+  data = requests.get(url).json()
+  print(data)
   # If there was an error in the access token info, abort.
-  if data['email_verified'] != 'true':
-    response = make_response(json.dumps('Email could not be verified.'), 500)
+  if data.get('error') is not None:
+    response = make_response(json.dumps(data.get('error')), 500)
     response.headers['Content-Type'] = 'application/json'
     return response
-
-  # Verify that the access token is used for the intended user.
-  google_id = data['sub']
-  if userid != google_id:
-    response = make_response(json.dumps('Token\'s user ID doesn\'t match given user ID.'), 401)
-    response.headers['Content-Type'] = 'application/json'
-    return response
-
-  # Verify that the access token is valid for this app.
-  if data['azp'] != CLIENT_ID:
-    response = make_response(json.dumps('Token\'s client ID does not match app\'s.'), 401)
-    response.headers['Content-Type'] = 'application/json'
-    return response
-
-  # stored_access_token = login_session.get('access_token')
-  # stored_google_id = login_session.get('google_id')
-
-  # if stored_access_token is not None and google_id == stored_google_id:
-  #   response = make_response(json.dumps('Current user is already connected.'), 200)
-  #   response.headers['Content-Type'] = 'application/json'
-  #   return response
-
-  # # Store the access token in the session for later use.
-  # login_session['access_token'] = credentials.access_token
-  # login_session['google_id'] = google_id
-
-  # # Get user info
-  # userinfo_url = 'https://www.googleapis.com/oauth2/v1/userinfo'
-  # params = {'access_token': credentials.access_token, 'alt': 'json'}
-  # answer = requests.get(userinfo_url, params=params)
-
-  # data = answer.json()
-
-  # login_session['username'] = data['name']
-  # login_session['picture'] = data['picture']
-  # login_session['email'] = data['email']
-
-
-  return data;
 
 # JSON APIs
 
