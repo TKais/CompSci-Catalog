@@ -39,7 +39,7 @@
           'Content-Type': 'application/octet-stream; charset=utf-8'
         },
         body: code,
-      }).then(response => response.json()).then(data => responseDiv.textContent = data)
+      }).then(response => response.text()).then(data => responseDiv.innerHTML = data)
     }
   }
 
