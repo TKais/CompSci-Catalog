@@ -138,9 +138,9 @@ def google_connect():
   login_session['user_id'] = user_id
 
   output = ''
-  output += '<h1>Welcome, '
+  output += '<h3>Welcome, '
   output += login_session['username']
-  output += '!</h1>'
+  output += '!</h3>'
   output += '<img src="'
   output += login_session['picture']
   output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
