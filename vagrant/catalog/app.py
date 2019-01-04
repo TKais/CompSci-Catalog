@@ -77,24 +77,24 @@ def google_connect():
 
   print(data['email_verified'])
 
-  # # If there was an error in the access token info, abort.
+  # If there was an error in the access token info, abort.
   if data['email_verified'] != 'true':
     response = make_response(json.dumps('Email could not be verified.'), 500)
     response.headers['Content-Type'] = 'application/json'
     return response
 
-  # # Verify that the access token is used for the intended user.
+  # Verify that the access token is used for the intended user.
   google_id = data['sub']
   if userid != google_id:
     response = make_response(json.dumps('Token\'s user ID doesn\'t match given user ID.'), 401)
     response.headers['Content-Type'] = 'application/json'
     return response
 
-  # # Verify that the access token is valid for this app.
-  # if result['issued_to'] != CLIENT_ID:
-  #   response = make_response(json.dumps('Token\'s client ID does not match app\'s.'), 401)
-  #   response.headers['Content-Type'] = 'application/json'
-  #   return response
+  # Verify that the access token is valid for this app.
+  if data['azp'] != CLIENT_ID:
+    response = make_response(json.dumps('Token\'s client ID does not match app\'s.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
   # stored_access_token = login_session.get('access_token')
   # stored_google_id = login_session.get('google_id')
