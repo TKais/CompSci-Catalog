@@ -45,7 +45,12 @@
           'Content-Type': 'application/octet-stream; charset=utf-8'
         },
         body: code,
-      }).then(response => response.text()).then(data => responseDiv.innerHTML = data)
+      }).then(response => response.text()).then( (data) => {
+        responseDiv.innerHTML = data;
+        window.setTimeout( () => {
+          window.location.href = '/topics';
+        }, 3000);
+      });
     }
   }
 
