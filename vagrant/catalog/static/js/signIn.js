@@ -25,13 +25,19 @@
     return window.state;
   }
 
-  function onSuccess(result) {
+  function hideLoginInfo() {
     const googleButton = document.getElementById('login-button');
+    const googleHeader = document.getElementById('login-header');
+    googleButton.style.display = 'none';
+    googleHeader.style.display = 'none';
+  }
+
+  function onSuccess(result) {
     const state = getState();
     const responseDiv = document.getElementById('login-result');
     const code = result['code'];
     if(code) {
-      googleButton.style.display = 'none';
+      hideLoginInfo();
 
       return fetch( '/connect?state=' + state, {
         method: 'POST',
