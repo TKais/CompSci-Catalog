@@ -55,6 +55,28 @@ def create_user(login_session):
     user = session.query(User).filter_by(email=login_session['email']).one()
     return user.id
 
+
+def google_disconnect():
+  access_token = login_session.get('access_token')
+  if access_token is None:
+    response = make_response(json.dumps('Current user not connected.'), 401)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+  url = ('https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token)
+  revoke = requests.post('https://accounts.google.com/o/oauth2/revoke',
+      params={'token': access_token},
+      headers = {'content-type': 'application/x-www-form-urlencoded'})
+  status_code = getattr(revoke, 'status_code')
+  if result['status'] == '200':
+    response = make_response(json.dumps('Successfully disconnected.'), 200)
+    response.headers['Content-Type'] = 'application/json'
+    return response
+  else:
+    response = make_response(json.dumps('Failed to revoke token for given user.', 400))
+    response.headers['Content-Type'] = 'application/json'
+    return response
+
+
 # LOGIN Endpoints
 
 @app.route('/login/')
@@ -146,6 +168,26 @@ def google_connect():
   output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
 
   return output
+
+
+@app.route('/disconnect/')
+def disconnect():
+  if 'provider' in login_session:
+    if login_session['provider'] == 'google':
+      google_disconnect()
+      del login_session['google_id']
+      del login_session['access_token']
+    del login_session['username']
+    del login_session['email']
+    del login_session['picture']
+    del login_session['user_id']
+    del login_session['provider']
+    flash("You have successfully been logged out.")
+    return redirect(url_for('show_topics'))
+  else:
+    flash("You were not logged in")
+    return redirect(url_for('show_topics'))
+
 
 # JSON APIs
 
