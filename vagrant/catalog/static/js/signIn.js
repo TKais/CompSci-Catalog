@@ -28,7 +28,7 @@
   function onSuccess(result) {
     const googleButton = document.getElementById('login-button');
     const state = getState();
-    const responseDiv = document.getElementById('sign-in__result');
+    const responseDiv = document.getElementById('login-result');
     const code = result['code'];
     if(code) {
       googleButton.style.display = 'none';
@@ -44,7 +44,7 @@
   }
 
   function onFailure(err) {
-    const responseDiv = document.getElementById('sign-in__result');
+    const responseDiv = document.getElementById('login-result');
     responseDiv.innerHTML = err;
   }
 })();
