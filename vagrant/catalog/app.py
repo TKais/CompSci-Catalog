@@ -156,6 +156,7 @@ def google_connect():
   output += '<h3>Welcome, '
   output += login_session['username']
   output += '!</h3>'
+  output += '<h4>You\'re being redirected to the homepage...</h4>'
   output += '<img src="'
   output += login_session['picture']
   output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
