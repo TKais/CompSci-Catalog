@@ -1,0 +1,17 @@
+@import './mixins/positioning';
+
+.login {
+  margin-top: 3rem;
+  &__header {
+    text-align: center;
+  }
+  &__result {
+    margin-top: 2rem;
+    h3 {
+      text-align: center;
+    }
+    img {
+      margin-top: 1rem;
+    }
+  }
+}
