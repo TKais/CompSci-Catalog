@@ -226,6 +226,8 @@ def show_topic(topic_url):
 @app.route('/topics/<topic_url>/categories/new/', methods=['GET', 'POST'])
 def create_category(topic_url):
   topic = session.query(Topic).filter_by(url = topic_url).one()
+  if 'username' not in login_session:
+    return redirect('/login')
   if request.method == 'POST':
     is_unique = check_category_uniqueness(topic.id, request.form['cname']);
     if is_unique:
