@@ -1,9 +1,9 @@
 {% extends "main.html" %}
 {% block content %}
-<div class="sign-in">
-  <h3>Sign in with Google</h3>
+<div class="login">
+  <h4 id="login-header" class="login__header">Sign in with your Google account</h4>
   <div id="login-button"></div>
-  <div id="sign-in__result"></div>
+  <div id="login-result" class="login__result"></div>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='js/signIn.js') }}"></script>
 <script type="text/javascript">setState({{STATE|tojson}})</script>
