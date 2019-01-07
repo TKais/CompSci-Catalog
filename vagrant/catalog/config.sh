@@ -13,6 +13,7 @@ pip3 install oauth2client --user
 pip3 install requests --user
 pip3 install sqlalchemy --user
 pip3 install --upgrade google-auth --user
+pip3 install pycodestyle --user
 npm rebuild node-sass
 npm run build
 python3 db.py
