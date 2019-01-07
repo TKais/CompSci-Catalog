@@ -2,3 +2,8 @@
   display: flex;
   justify-content: center;
 }
+
+@mixin non-flex-center() {
+  left: 50%;
+  transform: translateX(-50%);
+}
