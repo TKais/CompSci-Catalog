@@ -251,16 +251,17 @@ def show_category(topic_url, category_url):
 
 @app.route('/topics/<topic_url>/categories/<category_url>/new/', methods=['GET', 'POST'])
 def create_article(topic_url, category_url):
+  category = session.query(Category).filter_by(url=category_url).one()
+  user_id = login_session['user_id']
   if 'username' not in login_session:
     return redirect('/login')
   if request.method == 'POST':
-    category = session.query(Category).filter_by(url=category_url).one()
-    new_article = Article(name=request.form['aname'], content=request.form['acontent'], category_id=category.id)
+    new_article = Article(name=request.form['aname'], content=request.form['acontent'], category_id=category.id, user_id=user_id)
     session.add(new_article)
     session.commit()
     return redirect(url_for('show_category', topic_url=topic_url, category_url=category_url))
   else:
-    return render_template('new_article.html')
+    return render_template('new_article.html', category=category)
 
 
 @app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/')
@@ -273,6 +274,11 @@ def show_article(topic_url, category_url, article_id):
 @app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/edit/', methods=['GET', 'POST'])
 def edit_article(topic_url, category_url, article_id):
   article = session.query(Article).filter_by(id = article_id).one()
+  if 'username' not in login_session:
+    return redirect('/login')
+  if article.user_id != login_session['user_id']:
+    flash('You are not the authorized to edit this article. Please select an article you\'ve created in order to edit')
+    return redirect(url_for('show_article', topic_url=topic_url, category_url=category_url, article_id=article_id))
   if request.method == 'POST':
     if request.form['aname']:
       article.name = request.form['aname']
@@ -289,6 +295,11 @@ def edit_article(topic_url, category_url, article_id):
 @app.route('/topics/<topic_url>/categories/<category_url>/<article_id>/delete/', methods=['GET', 'POST'])
 def delete_article(topic_url, category_url, article_id):
   article = session.query(Article).filter_by(id = article_id).one()
+  if 'username' not in login_session:
+    return redirect('/login')
+  if article.user_id != login_session['user_id']:
+    flash('You are not the authorized to delete this article. Please select an article you\'ve created in order to delete it')
+    return redirect(url_for('show_article', topic_url=topic_url, category_url=category_url, article_id=article_id))
   if request.method == 'POST':
     session.delete(article)
     session.commit()
