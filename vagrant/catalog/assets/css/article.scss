@@ -9,33 +9,36 @@ $button-width: 9rem;
     width: 55%;
     margin-top: 5rem;
   }
-  &__form--edit {
-    width: 55%;
-    margin-top: 5rem;
-    input, textarea {
-      margin-bottom: 2rem !important;
+  &__form {
+    margin-top: 2.5rem !important;
+    &--edit {
+      width: 55%;
+      margin-top: 5rem;
+      input, textarea {
+        margin-bottom: 2rem !important;
+      }
+      &-buttons {
+        @include flex-center();
+        .button {
+          width: $button-width;
+        }
+      } 
     }
-    &-buttons {
-      @include flex-center();
+    &--delete {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 55%;
+      margin-top: 5rem;
       .button {
         width: $button-width;
       }
-    } 
-  }
-  &__form--delete {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 55%;
-    margin-top: 5rem;
-    .button {
-      width: $button-width;
     }
-  }
-  &__form-buttons {
-    @include flex-center();
-    button {
-      width: $button-width;
+    &-buttons {
+      @include flex-center();
+      button {
+        width: $button-width;
+      }
     }
   }
   &__info {
@@ -57,5 +60,8 @@ $button-width: 9rem;
   }
   &__content {
     padding: 0 7rem;
+  }
+  &__error {
+    @include non-flex-center();
   }
 }
