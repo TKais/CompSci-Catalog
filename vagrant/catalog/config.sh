@@ -15,6 +15,7 @@ pip3 install sqlalchemy --user
 pip3 install --upgrade google-auth --user
 pip3 install pycodestyle --user
 npm rebuild node-sass
+npm install
 npm run build
 python3 db.py
 python3 db_data.py
