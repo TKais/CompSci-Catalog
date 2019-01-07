@@ -35,6 +35,7 @@
   function onSuccess(result) {
     const state = getState();
     const responseDiv = document.getElementById('login-result');
+    const googleButton = document.getElementById('login-button');
     const code = result['code'];
     if(code) {
       hideLoginInfo();
