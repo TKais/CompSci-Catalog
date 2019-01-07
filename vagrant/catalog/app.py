@@ -251,6 +251,8 @@ def show_category(topic_url, category_url):
 
 @app.route('/topics/<topic_url>/categories/<category_url>/new/', methods=['GET', 'POST'])
 def create_article(topic_url, category_url):
+  if 'username' not in login_session:
+    return redirect('/login')
   if request.method == 'POST':
     category = session.query(Category).filter_by(url=category_url).one()
     new_article = Article(name=request.form['aname'], content=request.form['acontent'], category_id=category.id)
