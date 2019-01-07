@@ -275,10 +275,10 @@ def show_category(topic_url, category_url):
            methods=['GET', 'POST'])
 def create_article(topic_url, category_url):
     category = session.query(Category).filter_by(url=category_url).one()
-    user_id = login_session['user_id']
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
+        user_id = login_session['user_id']
         new_article = Article(name=request.form['aname'],
                               content=request.form['acontent'],
                               category_id=category.id, user_id=user_id)
