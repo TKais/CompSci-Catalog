@@ -1,6 +1,15 @@
 {% extends "main.html" %}
 {% block content %}
 <div class="container__content-topics">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+      <div class="ui compact message container__logout-message">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
   <div class="ui link cards">
     {% for topic in topics %}
       <a class="card" href="{{url_for('show_topic', topic_url = topic.url)}}">
