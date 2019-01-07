@@ -8,6 +8,9 @@ $button-width: 9rem;
   &__new {
     width: 55%;
     margin-top: 5rem;
+    input:invalid, textarea:invalid {
+      border: 1px solid red !important;
+    }
   }
   &__form {
     margin-top: 2.5rem !important;
