@@ -10,6 +10,15 @@
       <a href="{{url_for('delete_article', topic_url=topic_url, category_url=category_url, article_id=article.id)}}" class="ui icon button red article__info-buttons--delete" aria-label="Delete article"><i class="trash alternate icon" aria-hidden="true"></i></a>
     </div>
   </div>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+      <div class="ui compact message red article__error">
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
   <p class="article__content">{{article.content}}</p>
 </div>
 {% endblock %}
