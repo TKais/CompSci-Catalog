@@ -21,10 +21,15 @@
       justify-content: center;
     }
   }
-  &__form-buttons {
-    @include flex-center();
-    button {
-      width: 9rem;
+  &__form {
+    &-buttons {
+      @include flex-center();
+      button {
+        width: 9rem;
+      }
+    }
+    input:invalid {
+      border: 1px solid red !important;
     }
   }
   &__error {
