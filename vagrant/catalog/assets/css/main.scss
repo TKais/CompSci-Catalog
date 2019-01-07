@@ -15,5 +15,9 @@ body {
         justify-content: center;
       }
     }
+    &__logout-message {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
