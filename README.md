@@ -28,3 +28,6 @@ This project utilizes the following technologies:
 * SQLite
 * OAuth 2.0
 * SQLAlchemy
+* Semantic UI
+* Webpack
+* SASS
