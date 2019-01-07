@@ -3,7 +3,7 @@
 <div class="container__content-topics">
   {% with messages = get_flashed_messages() %}
     {% if messages %} 
-      <div class="ui compact message container__logout-message">
+      <div class="ui compact green message container__logout-message">
         {% for message in messages %}
           <p>{{ message }}</p>
         {% endfor %}
