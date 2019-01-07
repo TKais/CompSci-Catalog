@@ -97,11 +97,12 @@ def show_login():
 
 @app.route('/connect', methods=['POST'])
 def google_connect():
+    # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-
+    # Obtain authorization code
     code = request.data
 
     try:
